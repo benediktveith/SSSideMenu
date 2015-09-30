@@ -30,7 +30,24 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"ABC";
+    
+    return [NSString stringWithFormat:@"Section Header: %ld", (long)section];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [[UIView alloc] init];
+    
+    headerView.frame = CGRectMake(0, 0, self.view.frame.size.width, tableView.sectionHeaderHeight);
+    
+    UILabel *headerLabel = [[UILabel alloc] init];
+    headerLabel.frame = CGRectMake(10, 0, self.view.frame.size.width - 10, tableView.sectionHeaderHeight);
+    headerLabel.font = [UIFont boldSystemFontOfSize:14];
+    headerLabel.text = [self tableView:tableView titleForHeaderInSection:section];
+
+    
+    [headerView addSubview:headerLabel];
+    
+    return headerView;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -39,8 +56,12 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    cell.frame = CGRectMake(0, 0, self.view.frame.size.width, cell.frame.size.height);
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:10];
     
-    cell.textLabel.text = @"AAAAAAA";
+    
+    NSString *itemNumber = [NSString stringWithFormat:@"Item : %ld", (long)indexPath.row];
+    cell.textLabel.text = [itemNumber stringByAppendingString: [NSString stringWithFormat:@"  with Size: %f", cell.frame.size.width]];
     
     return cell;
 }

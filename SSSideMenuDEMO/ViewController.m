@@ -28,7 +28,7 @@
     
     if (! _sideMenus) {
         // Init _sideMenus with Size; NEEDED
-        _sideMenus = [[SSSideMenu alloc] setupSSSideMenuWithSize:CGSizeMake(150, self.view.frame.size.height)];
+        _sideMenus = [[SSSideMenu alloc] setupSSSideMenuWithSize:CGSizeMake(200, self.view.frame.size.height)];
         
         /**
          Call if you want to have swipe gesture recognizer; OPTIONAL
