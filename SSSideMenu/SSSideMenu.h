@@ -2,8 +2,8 @@
 //  SSSideMenu.h
 //  SSSideMenu
 //
-//  Created by Benedikt Veith on 28/09/15.
-//  Copyright © 2015 Benedikt Veith. All rights reserved.
+//  Created by Scherer Software on 28/09/15.
+//  Copyright © 2015 Scherer Software. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -25,29 +25,13 @@
 /**
  *  Use for activate Swipe Gesture Recognizer
  *
- *  @param side     Whether 'Both' / 'Left' / 'Right'
- *  @param mainView Main ViewController
- *  @param sideMenu Side menu that will be opened
+ *  @param side     For side: 'Both' / 'Left' / 'Right'
+ *  @param mainView For main ViewController
+ *  @param sideMenu For sideMenu TableViewController
  */
 - (void)initSSSideMenuWithSwipeOnSide:(NSString *)side
                                onView:(UIViewController *)mainView
                               forMenu:(UITableViewController*)sideMenu;
-
-/**
- *  Open side menu on the left side of screen
- *
- *  @param mainView Main ViewController
- *  @param sideMenu Side menu that will be opened
- */
-- (void)moveViewFromLeftToRightFor:(UIViewController*)mainView and:(UITableViewController*)sideMenu;
-
-/**
- *  Open side menu on the right side of screen
- *
- *  @param mainView Main ViewController
- *  @param sideMenu Side menu that will be opened
- */
-- (void)moveViewFromRightToLeftFor:(UIViewController*)mainView and:(UITableViewController*)sideMenu;
 
 /**
  *  Reset views to default / closes side menus
@@ -77,5 +61,14 @@
  *  @param size
  */
 - (void)setTheSize:(CGSize)size;
+
+/**
+ *  Opens side menu via button action
+ *
+ *  @param mainView For main ViewController
+ *  @param sideMenu For sideMenu TableViewController
+ *  @param side     For side: Left / Right
+ */
+- (void)openSideMenuViaButtonFor:(UIViewController*)mainView andSideMenu:(UITableViewController*)sideMenu fromSide:(NSString*)side;
 
 @end

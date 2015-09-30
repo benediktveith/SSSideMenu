@@ -2,8 +2,8 @@
 //  ViewController.m
 //  SSSideMenu
 //
-//  Created by Benedikt Veith on 25/09/15.
-//  Copyright © 2015 Benedikt Veith. All rights reserved.
+//  Created by Scherer Software on 25/09/15.
+//  Copyright © 2015 Scherer Software. All rights reserved.
 //
 
 #import "ViewController.h"
@@ -46,12 +46,12 @@
 
 - (IBAction)openSideMenuPressed:(UIButton *)sender {
     // Side menu LEFT
-    [_sideMenus moveViewFromLeftToRightFor:self and:_sideMenu];
+    [_sideMenus openSideMenuViaButtonFor:self andSideMenu:_sideMenu fromSide:@"Left"];
 }
 
 - (IBAction)openSideMenuRight:(UIButton *)sender {
     // Side menu RIGHT
-    [_sideMenus moveViewFromRightToLeftFor:self and:_sideMenu];
+    [_sideMenus openSideMenuViaButtonFor:self andSideMenu:_sideMenu fromSide:@"Right"];
 }
 
 - (IBAction)closeSideMenuPressed:(UIButton *)sender {

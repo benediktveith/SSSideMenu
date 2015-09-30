@@ -26,92 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SSSideMenu/SSSideMenu.m"
-            timestampString = "465143241.050033"
+            timestampString = "465296183.126456"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "-moveViewFromRightToLeftFor:and:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SSSideMenu moveViewFromRightToLeftFor:and:]"
-                  moduleName = "SSSideMenu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/benediktveith/Apps/pods/SSSideMenu/SSSideMenu/SSSideMenu.m"
-                  timestampString = "465126483.117499"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "646">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__45-[SSSideMenu moveViewFromRightToLeftFor:and:]_block_invoke"
-                  moduleName = "SSSideMenu"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/benediktveith/Apps/pods/SSSideMenu/SSSideMenu/SSSideMenu.m"
-                  timestampString = "465126483.117802"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "15">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SSSideMenu/SSSideMenu.m"
-            timestampString = "465143241.050033"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "-moveViewFromRightToLeftFor:and:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SSSideMenu/SSSideMenu.m"
-            timestampString = "465143241.050033"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "-moveViewFromRightToLeftFor:and:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SSSideMenu/SSSideMenu.m"
-            timestampString = "465143369.16312"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "-moveViewFromLeftToRightFor:and:"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
+            landmarkName = "-resetViewsFor:and:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
