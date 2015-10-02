@@ -67,7 +67,7 @@ NSString * const NO_SIDE = @"No";
 - (void)moveSide:(UIPanGestureRecognizer*)recognizer {
     // Define position of pan gesture and its translation from starting point
     CGPoint position = [recognizer locationInView:_mainView.view];
-    CGPoint translation = [recognizer translationInView:_mainView.view];
+    CGPoint translation = [recognizer translationInView:_sideMenu.view];
     
     // Checks if _side is Right / Both
     if ([_side isEqualToString:RIGHT_SIDE] || [_side isEqualToString:BOTH_SIDES]) {
@@ -79,17 +79,17 @@ NSString * const NO_SIDE = @"No";
             [self moveSideMenuWithRecognizerTranslation:translation fromRecognizer:recognizer inDirection:RIGHT_SIDE];
             return;
         }
-        // Check if sideMenu is showing and position is in BoundingBox of sideMenu
-        if ([_showingSideMenu isEqualToString:RIGHT_SIDE] &&
-            CGRectContainsPoint(_sideMenu.view.frame, position)) {
-            // Move sideMenu
-            [self moveSideMenuWithRecognizerTranslation:translation fromRecognizer:recognizer inDirection:RIGHT_SIDE];
-            return;
-        }
-        // Check if sideMenu is showing and position is not in BoundingBox of sideMenu
-        if ([_showingSideMenu isEqualToString:RIGHT_SIDE] &&
-            ! CGRectContainsPoint(_sideMenu.view.frame, position)) {
-            // Open / Close sideMenu depending on current position
+        // Check if sideMenu is open on RightSide
+        if ([_showingSideMenu isEqualToString:RIGHT_SIDE]) {
+            // If position is in BoundingBox of sideMenu
+            if (CGRectContainsPoint(_sideMenu.view.frame, position)) {
+                // Move sideMenu
+                [self moveSideMenuWithRecognizerTranslation:translation fromRecognizer:recognizer inDirection:RIGHT_SIDE];
+                return;
+            }
+            // Resets translation to Zero
+            [recognizer setTranslation:CGPointZero inView:_mainView.view];
+            // Else open / close sideMenu depending on current position
             [self openSideMenuCorrectly:RIGHT_SIDE withRecognizer:recognizer];
             return;
         }
@@ -98,23 +98,26 @@ NSString * const NO_SIDE = @"No";
     if ([_side isEqualToString:LEFT_SIDE] || [_side isEqualToString:BOTH_SIDES]) {
         // Check if sideMenu is not showing and if pan position is in BoundingBox to open it
         if (([_showingSideMenu isEqualToString:NO_SIDE] || ! _showingSideMenu)
-            && CGRectContainsPoint(CGRectMake(0 - _sideMenuSize.width, 20, _sideMenuSize.width + 40 + translation.x, _sideMenuSize.height), position)) {
+            && CGRectContainsPoint(CGRectMake(0 - _sideMenuSize.width, 20,
+                                              _sideMenuSize.width + 40 + translation.x, _sideMenuSize.height), position)) {
             // Move sideMenu
             [self moveSideMenuWithRecognizerTranslation:translation fromRecognizer:recognizer inDirection:LEFT_SIDE];
             return;
         }
-        // Check if sideMenu is showing and position is in BoundingBox of sideMenu
-        if ([_showingSideMenu isEqualToString:LEFT_SIDE] &&
-            CGRectContainsPoint(_sideMenu.view.frame, position)) {
-            // Move sideMenu
-            [self moveSideMenuWithRecognizerTranslation:translation fromRecognizer:recognizer inDirection:LEFT_SIDE];
-            return;
-        }
-        // Check if sideMenu is showing and position is not in BoundingBox of sideMenu
-        if ([_showingSideMenu isEqualToString:LEFT_SIDE] &&
-            ! CGRectContainsPoint(_sideMenu.view.frame, position)) {
-            // Open / Close sideMenu depending on current position
+        // Check if sideMenu is open on LeftSide
+        if ([_showingSideMenu isEqualToString:LEFT_SIDE]) {
+
+            // If position is in BoundingBox of sideMenu
+            if (CGRectContainsPoint(_sideMenu.view.frame, position)) {
+                // Move sideMenu
+                [self moveSideMenuWithRecognizerTranslation:translation fromRecognizer:recognizer inDirection:LEFT_SIDE];
+                return;
+            }
+            // Resets translation to Zero
+            [recognizer setTranslation:CGPointZero inView:_mainView.view];
+            // Else open / close sideMenu depending on current position
             [self openSideMenuCorrectly:LEFT_SIDE withRecognizer:recognizer];
+            return;
         }
     }
 }
@@ -195,24 +198,24 @@ NSString * const NO_SIDE = @"No";
         
         // Return if sideMenu is fully opened
         if ((recognizerTranslation.x >= _sideMenuSize.width && [direction isEqualToString:LEFT_SIDE]) ||
-            (recognizerTranslation.x <= -_sideMenuSize.width && [direction isEqualToString:RIGHT_SIDE])) {
+            (-recognizerTranslation.x >= _sideMenuSize.width && [direction isEqualToString:RIGHT_SIDE])) {
             [self openMenuWithDirection:direction];
             return;
         }
         
-        // Setup sideMenu
         [self setupSideMenu:_sideMenu with:_mainView];
         [_mainView.view bringSubviewToFront:_sideMenu.view];
     }
     
     // Check if sideMenu is opened
     if ([_showingSideMenu isEqualToString:LEFT_SIDE] || [_showingSideMenu isEqualToString:RIGHT_SIDE]) {
+        
         // Return if try to close sideMenu in opposite direction
         if (((-_sideMenuSize.width) - recognizerTranslation.x <= -_sideMenuSize.width && [direction isEqualToString:LEFT_SIDE])
             || (_sideMenuSize.width - recognizerTranslation.x >= _sideMenuSize.width && [direction isEqualToString:RIGHT_SIDE])) {
             return;
         }
-       
+        
         // Return if sideMenu is fully closed
         if (recognizerTranslation.x >= _sideMenuSize.width || recognizerTranslation.x <= -_sideMenuSize.width) {
             [self resetViewsFor:_mainView and:_sideMenu];
@@ -221,9 +224,7 @@ NSString * const NO_SIDE = @"No";
     }
     
     // Set sideMenu frame depending on direction
-    if ([direction isEqualToString:LEFT_SIDE]) {
-        _sideMenu.view.frame = CGRectMake(-_sideMenuSize.width, 20, _sideMenuSize.width, _sideMenuSize.height);
-    }
+    _sideMenu.view.frame = CGRectMake(-_sideMenuSize.width, 20, _sideMenuSize.width, _sideMenuSize.height);
     if ([direction isEqualToString:RIGHT_SIDE]) {
         _sideMenu.view.frame = CGRectMake(_mainView.view.frame.size.width, 20, _sideMenuSize.width, _sideMenuSize.height);
     }
@@ -233,9 +234,6 @@ NSString * const NO_SIDE = @"No";
         NSInteger numbPrefix = 1;
         if ([_showingSideMenu isEqualToString:NO_SIDE] || ! _showingSideMenu) {
             numbPrefix = 0;
-        }
-        if ([_showingSideMenu isEqualToString:RIGHT_SIDE]) {
-            numbPrefix = 1;
         }
         if ([_showingSideMenu isEqualToString:LEFT_SIDE]) {
             numbPrefix = -1;
@@ -276,7 +274,7 @@ NSString * const NO_SIDE = @"No";
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         //Reposition mainView frame and its bounds
         mainView.view.frame = CGRectMake(0, 0, mainView.view.frame.size.width, mainView.view.frame.size.height);
-        mainView.view.bounds = CGRectMake(0, 0, mainView.view.frame.size.width, mainView.view.frame.size.height);
+        mainView.view.bounds = mainView.view.frame;
         
     } completion:^(BOOL finished) {
         if (finished) {
